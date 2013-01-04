@@ -1,5 +1,5 @@
 #
-# spec file for package:  GMperl-5.16.1
+# spec file for package:  GMperl-5.16.2
 #
 # NOTE: Please, please, make sure /usr/gnu/bin isn't in your path
 #       when you build this/set it up.  Perl doesn't seem to like this on
@@ -7,9 +7,6 @@
 # ALSO: Make sure the Studio 12.3 compiler is already in your path when you
 #       run pkgtool on this.
 #
-# %include Solaris.inc
-# %include arch64.inc
-%define optflags       -xstrconst -xtarget=generic -mr
 
 %define major       5
 %define minor       16
@@ -39,6 +36,14 @@ IPS_legacy:       false
 %define perl_arch_dir sun4-solaris-64int
 %else
 %define perl_arch_dir i86pc-solaris-64int 
+%endif
+
+# NOTE: Added sparcv9 to gnu lib dirs due to this being a 64-bit perl
+# TODO: Fix this so it's architecture independent
+%ifarch sparc
+%define arch_dir sparcv9
+%else
+%define arch_dir amd64
 %endif
 
 %define           perl_vendor        GM 
@@ -110,14 +115,7 @@ export PERL_LIBS="-lsocket -lnsl -ldb-5.1 -ldl -lm -lpthread -lc"
 export CC=/opt/solarisstudio12.3/bin/cc
 # Specify -xO3 as default specifies no optimiaztion - this helps avoid test failures
 export CFLAGS="%optflags -xO3 -I%{_prefix}/gnu/include"
-# NOTE: Added sparcv9 to gnu lib dirs due to this being a 64-bit perl
-# TODO: Fix this so it's architecture independent
-%ifarch sparc
-%define 64bit_arch sparcv9
-%else
-%define 64bit_arch amd64
-%endif
-export LDFLAGS="-L%{_prefix}/gnu/lib/%{64bit_arch} -R%{_prefix}/gnu/lib/%{64bit_arch} -L%{_libdir} -R%{_libdir}"
+export LDFLAGS="-L%{_prefix}/gnu/lib/%{arch_dir} -R%{_prefix}/gnu/lib/%{arch_dir} -L%{_libdir} -R%{_libdir}"
 
 #
 # Configure Perl
