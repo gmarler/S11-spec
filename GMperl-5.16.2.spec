@@ -109,10 +109,10 @@ export INC_COMPAT="5.14"
 export PERL_LIBS="-lsocket -lnsl -ldb-5.1 -ldl -lm -lpthread -lc"
 
 export CC=/opt/solarisstudio12.3/bin/cc
-# Specify -xO3 as default specifies no optimiaztion - this helps avoid test failures
+# Specify -xO3 as default specifies no optimization - this helps avoid test failures
 # NOTE: %optflags is currently dangerous, as it seems to assume gcc - have
 #       removed it from both CFLAGS and -Doptimize
-export CFLAGS="-xO3 -I%{_prefix}/gnu/include"
+export CFLAGS="-I%{_prefix}/gnu/include"
 # TODO: This *might* cause problems later for us, as it shows up automatically
 # in lddlflags:
 #  -L/opt/solarisstudio12.3/prod/lib/amd64
@@ -159,7 +159,7 @@ export LDFLAGS="-L%{_prefix}/gnu/lib/%{arch_dir} -R%{_prefix}/gnu/lib/%{arch_dir
   -Duseshrplib                                 \
   -Dusesitecustomize                           \
   -Dusethreads                                 \
-  -Dccdlflags="-L%{perl_archlib}/CORE -R%{perl_archlib}/CORE"         \
+  -Dccdlflags="-R %{perl_archlib}/CORE"        \
   -Dvendorbin=%{perl_vendorbin}                \
   -Dvendorarch=%{perl_vendorarch}              \
   -Dvendorlib=%{perl_vendorlib}                \
