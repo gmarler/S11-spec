@@ -4,8 +4,10 @@
 # NOTE: Please, please, make sure /usr/gnu/bin isn't in your path
 #       when you build this/set it up.  Perl doesn't seem to like this on
 #       the Solaris 11 platform that much.
+# ALSO: Make sure the Studio 12.3 compiler is already in your path when you
+#       run pkgtool on this.
 #
-%include Solaris.inc
+# %include Solaris.inc
 # %include arch64.inc
 %define optflags       -xstrconst -xtarget=generic -mr
 
@@ -62,7 +64,7 @@ IPS_legacy:       false
 %define           perl_vendorhtmldir %{perl_vendordir}/%{src_version}/html
 
 
-%include default-depend.inc
+# %include default-depend.inc
 
 # Disable internal dependency generator for this pkg - we'll explicitly
 # define them ourselves
@@ -110,7 +112,12 @@ export CC=/opt/solarisstudio12.3/bin/cc
 export CFLAGS="%optflags -xO3 -I%{_prefix}/gnu/include"
 # NOTE: Added sparcv9 to gnu lib dirs due to this being a 64-bit perl
 # TODO: Fix this so it's architecture independent
-export LDFLAGS="%_ldflags -L%{_prefix}/gnu/lib/sparcv9 -R%{_prefix}/gnu/lib/sparcv9 -L%{_libdir} -R%{_libdir}"
+%ifarch sparc
+%define 64bit_archdir sparcv9
+%else
+%define 64bit_archdir amd64
+%endif
+export LDFLAGS="-L%{_prefix}/gnu/lib/%{64bit_archdir} -R%{_prefix}/gnu/lib/%{64bit_archdir} -L%{_libdir} -R%{_libdir}"
 
 #
 # Configure Perl
