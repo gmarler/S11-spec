@@ -38,13 +38,9 @@ IPS_legacy:       false
 %define perl_arch_dir i86pc-solaris-64int 
 %endif
 
-# NOTE: Added sparcv9 to gnu lib dirs due to this being a 64-bit perl
-# TODO: Fix this so it's architecture independent
-%ifarch sparc
-%define arch_dir sparcv9
-%else
-%define arch_dir amd64
-%endif
+# NOTE: Since this is 64-bit perl, we can simply use the new arch dir of 64,
+#       rather than the arch specific sparcv9 or amd64
+%define arch_dir 64
 
 %define           perl_vendor        GM 
 %define           perl5_dir          %{_prefix}/perl5
@@ -114,8 +110,15 @@ export PERL_LIBS="-lsocket -lnsl -ldb-5.1 -ldl -lm -lpthread -lc"
 
 export CC=/opt/solarisstudio12.3/bin/cc
 # Specify -xO3 as default specifies no optimiaztion - this helps avoid test failures
-export CFLAGS="%optflags -xO3 -I%{_prefix}/gnu/include"
+# NOTE: %optflags is currently dangerous, as it seems to assume gcc - have
+#       removed it from both CFLAGS and -Doptimize
+export CFLAGS="-xO3 -I%{_prefix}/gnu/include"
+# TODO: This *might* cause problems later for us, as it shows up automatically
+# in lddlflags:
+#  -L/opt/solarisstudio12.3/prod/lib/amd64
 export LDFLAGS="-L%{_prefix}/gnu/lib/%{arch_dir} -R%{_prefix}/gnu/lib/%{arch_dir} -L%{_libdir} -R%{_libdir}"
+# TODO: This may prevent the Embed.t test from failing:
+export LD_LIBRARY_PATH=%{_builddir}
 
 #
 # Configure Perl
@@ -136,7 +139,7 @@ export LDFLAGS="-L%{_prefix}/gnu/lib/%{arch_dir} -R%{_prefix}/gnu/lib/%{arch_dir
   -Dman1ext=1                           \
   -Dman3dir=%{perl_mandir}/man3         \
   -Dman3ext=3perl                       \
-  -Doptimize="%{optflags}"              \
+  -Doptimize="-xO3"                     \
   -Dperladmin="root@localhost"          \
   -Dprefix=%{perl_prefix}                      \
   -Dprivlib=%{perl_lib}                        \
