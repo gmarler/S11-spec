@@ -117,8 +117,10 @@ export CFLAGS="-xO3 -I%{_prefix}/gnu/include"
 # in lddlflags:
 #  -L/opt/solarisstudio12.3/prod/lib/amd64
 export LDFLAGS="-L%{_prefix}/gnu/lib/%{arch_dir} -R%{_prefix}/gnu/lib/%{arch_dir} -L%{_libdir} -R%{_libdir}"
-# TODO: This may prevent the Embed.t test from failing:
-export LD_LIBRARY_PATH=%{_builddir}
+# TESTED: This may prevent the Embed.t test from failing - it doesn't - that
+# test is definitely broken:
+# 
+# export LD_LIBRARY_PATH=%{_builddir}
 
 #
 # Configure Perl
@@ -157,7 +159,7 @@ export LD_LIBRARY_PATH=%{_builddir}
   -Duseshrplib                                 \
   -Dusesitecustomize                           \
   -Dusethreads                                 \
-  -Dccdlflags="-R %{perl_archlib}/CORE"        \
+  -Dccdlflags="-L%{perl_archlib}/CORE -R%{perl_archlib}/CORE"         \
   -Dvendorbin=%{perl_vendorbin}                \
   -Dvendorarch=%{perl_vendorarch}              \
   -Dvendorlib=%{perl_vendorlib}                \
