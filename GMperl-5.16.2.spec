@@ -13,7 +13,7 @@
 
 %define major       5
 %define minor       16
-%define patch       1
+%define patch       2
 %define src_version %{major}.%{minor}.%{patch}
 %define my_version  %{src_version}.0
 
