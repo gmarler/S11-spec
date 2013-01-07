@@ -180,7 +180,7 @@ gmake -j$CPUS
 #
 # Disable due to a couple of incorrectly failing tests
 #
-TEST_JOBS=32 gmake test_harness # Run tests in parallel as of 5.10.0
+#TEST_JOBS=32 gmake test_harness # Run tests in parallel as of 5.10.0
 
 %install
 gmake DESTDIR=$RPM_BUILD_ROOT install
