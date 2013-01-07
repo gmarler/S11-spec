@@ -1,6 +1,9 @@
 #
 # spec file for package:  GMperl-5.16.2
 #
+# Build for IPS with:
+# pkgtool build-only --nosourcepkg --ips --interactive --verbose GMperl-5.16.2
+#
 # NOTE: Please, please, make sure /usr/gnu/bin isn't in your path
 #       when you build this/set it up.  Perl doesn't seem to like this on
 #       the Solaris 11 platform that much.
@@ -20,7 +23,7 @@ Summary:          Practical Extraction and Report Language
 Version:          %{my_version}
 License:          Artistic
 Source:           http://www.cpan.org/src/5.0/perl-%{src_version}.tar.gz
-SUNW_BaseDir:     %{_basedir}
+SUNW_BaseDir:     /
 SUNW_Copyright:   %{name}.copyright
 BuildRoot:        %{_tmppath}/%{name}-%{src_version}-build
 IPS_legacy:       false
