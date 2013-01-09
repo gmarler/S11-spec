@@ -89,6 +89,7 @@
 # Modern::Perl
 # CPAN::SQLite
 # Pod::HTML
+# Test::Pod::Coverage
 # Term::ReadKey
 # Term::ReadLine::Perl
 # YAML
