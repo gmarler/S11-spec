@@ -101,6 +101,9 @@
 # Perl::Tidy
 # Perl::Critic
 # Moo
+# App::perlbrew
+# App::cpanminus
+# local::lib
 # Dist::Zilla
 # Dist::Zilla::Plugin::Git
 # Dist::Zilla::Plugin::VersionFromScript
