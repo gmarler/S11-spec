@@ -90,6 +90,7 @@
 # CPAN::SQLite
 # Pod::HTML
 # Term::ReadKey
+# Term::ReadLine::Perl
 # YAML
 # Digest::MD5
 # Digest::SHA1
