@@ -139,6 +139,7 @@
 #     Due to: Can't locate object method "list_files" via package"Archive::Tar::Wrapper"
 # Dist::Zilla::Plugin::Git::DescribeVersion
 # Dist::Zilla::Plugin::Git::Describe
+# Dist::Zilla::Plugin::GithubMeta
 # Dist::Zilla::Plugin::Catalyst
 # Module::Starter
 # Expect
