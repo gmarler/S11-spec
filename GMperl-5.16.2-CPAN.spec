@@ -142,6 +142,7 @@
 # Dist::Zilla::Plugin::Catalyst
 # Module::Starter
 # Expect
+# Regexp::Common
 # Number::Range
 # Term::ReadLine::Perl
 # Term::Size
@@ -187,6 +188,8 @@
 # JSON::Diffable
 # Web::Simple ????
 # System::Introspector
+# PPIx::EditorTools
+# Devel::NYTProf
 #
 # Graph::Directed
 # SQL::Translator
