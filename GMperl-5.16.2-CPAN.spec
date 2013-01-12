@@ -191,6 +191,7 @@
 # System::Introspector
 # PPIx::EditorTools
 # Devel::NYTProf
+# WWW::Scripter::Plugin::Ajax
 #
 # Graph::Directed
 # SQL::Translator
