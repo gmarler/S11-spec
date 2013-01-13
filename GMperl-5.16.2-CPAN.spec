@@ -188,10 +188,12 @@
 # Object::Remote
 # JSON::Diffable
 # Web::Simple ????
-# System::Introspector
 # PPIx::EditorTools
 # Devel::NYTProf
 # WWW::Scripter::Plugin::Ajax
+# PSGI
+# Plack
+# Task::Plack
 #
 # Graph::Directed
 # SQL::Translator
@@ -213,6 +215,7 @@
 # DBIx::Class::TimeStamp
 # MLDBM
 # AnyEvent
+# Test::Distribution???
 #
 # To be done...
 # Curses
