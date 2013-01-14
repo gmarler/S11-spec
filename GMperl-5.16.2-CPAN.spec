@@ -1,88 +1,9 @@
 #
 # spec file for package GMperl-5.16.2-CPAN
 #
-# Necessary config for root user to properly use CPAN - this file is
-# kept at: /root/.cpan/CPAN/MyConfig.pm
+# NOTE: We're using CPANPLUS for this
 #
-# TODO: We're using CPANPLUS for this, so the below CPAN config won't be needed.
 #
-# Specify path to this config file via cpan's -j <filename> option on installs
-# 
-# NOTE: We use 2 variants of this file:
-# - The first doesn't use a SQLite DB - have to have DBI module installed before
-#   that will work
-# - The second can use the SQLite DB, this usually speeds up the process
-#
-# $CPAN::Config = {
-#   'applypatch' => q[],
-#   'auto_commit' => q[0],
-#   'build_cache' => q[100],
-#   'build_dir' => q[/root/.cpan/build],
-#   'build_dir_reuse' => q[0],
-#   'build_requires_install_policy' => q[yes],
-#   'bzip2' => q[/bin/bzip2],
-#   'cache_metadata' => q[1],
-#   'check_sigs' => q[0],
-#   'colorize_output' => q[0],
-#   'commandnumber_in_prompt' => q[1],
-#   'connect_to_internet_ok' => q[1],
-#   'cpan_home' => q[/root/.cpan],
-#   'curl' => q[/bin/curl],
-#   'ftp' => q[/bin/ftp],
-#   'ftp_passive' => q[1],
-#   'ftp_proxy' => q[http://myproxy.gmarler.com:80/],
-#   'getcwd' => q[cwd],
-#   'gpg' => q[],
-#   'gzip' => q[/bin/gzip],
-#   'halt_on_failure' => q[0],
-#   'histfile' => q[/root/.cpan/histfile],
-#   'histsize' => q[100],
-#   'http_proxy' => q[http://myproxy.gmarler.com:80/],
-#   'inactivity_timeout' => q[0],
-#   'index_expire' => q[1],
-#   'inhibit_startup_message' => q[0],
-#   'keep_source_where' => q[/root/.cpan/sources],
-#   'load_module_verbosity' => q[v],
-#   'lynx' => q[],
-#   'make' => q[/usr/bin/gmake],
-#   'make_arg' => q[],
-#   'make_install_arg' => q[INSTALLDIRS=site],
-#   'make_install_make_command' => q[/usr/bin/gmake],
-#   'makepl_arg' => q[],
-#   'mbuild_arg' => q[],
-#   'mbuild_install_arg' => q[--installdirs=site],
-#   'mbuild_install_build_command' => q[./Build],
-#   'mbuildpl_arg' => q[],
-#   'ncftp' => q[],
-#   'ncftpget' => q[],
-#   'no_proxy' => q[],
-#   'pager' => q[less],
-#   'patch' => q[/usr/bin/gpatch],
-#   'perl5lib_verbosity' => q[v],
-#   'prefer_installer' => q[MB],
-#   'prefs_dir' => q[/root/.cpan/prefs],
-#   'prerequisites_policy' => q[follow],
-#   'proxy_user' => q[],
-#   'scan_cache' => q[atstart],
-#   'shell' => q[/bin/ksh],
-#   'show_unparsable_versions' => q[0],
-#   'show_upload_date' => q[0],
-#   'show_zero_versions' => q[0],
-#   'tar' => q[/usr/bin/gtar],
-#   'tar_verbosity' => q[v],
-#   'term_is_latin' => q[1],
-#   'term_ornaments' => q[1],
-#   'test_report' => q[0],
-#   'trust_test_report_history' => q[0],
-#   'unzip' => q[/bin/unzip],
-#   'urllist' => [q[file:///var/tmp/CPAN-20120204/], q[http://cpan.belfry.net/], q[http://cpan.binkerton.com/], q[http://cpan.mirror.facebook.com/]],
-#   'use_sqlite' => q[0],
-#   'wget' => q[/bin/wget],
-#   'yaml_load_code' => q[0],
-#   'yaml_module' => q[YAML],
-# };
-# 1;
-# __END__
 
 # 
 # List of Modules to Install, in order:
@@ -181,7 +102,7 @@
 # Crypt::OpenSSL::AES
 # Catalyst::Plugin::Session::Store::Memcached::Fast
 # Catalyst::Plugin::Session::Store::FastMmap
-# TODO:  Catalyst::Plugin::Session::Store::BerkeleyDB
+# Catalyst::Plugin::Session::Store::BerkeleyDB
 # Catalyst::Plugin::Log::Log4perl
 # Catalyst::Plugin::LogDeep
 # Catalyst::Plugin::LogWarnings
@@ -194,7 +115,6 @@
 # PSGI
 # Plack
 # Task::Plack
-#
 # Graph::Directed
 # SQL::Translator
 # DateTime::Format::Strptime
@@ -208,39 +128,39 @@
 # DateTime::SpanSet
 # DateTime::Set
 # DateTime::Event::Recurrence
-# NOTE: Following due to a bogus test failure
-# force DBIx::Class
+# DBIx::Class
 # DBIx::Class::DeploymentHandler
 # Catalyst::Helper::Model::DBIC::Schema
 # DBIx::Class::TimeStamp
 # MLDBM
 # AnyEvent
-# Test::Distribution???
 #
 # To be done...
 # Curses
-# look curses
+# z Curses
 #  Alter this line: 'solaris'   => [ ''                       , '-L/usr/ccs/lib -lcurses' ],
 #  to look like:    'solaris'   => [ '-I/usr/include/ncurses' , '-L/usr/gnu/lib -lncurses'],
 #  Or (for 64-bit perl): 'solaris'   => [ '-I/usr/include/ncurses' , #  '-L/usr/gnu/lib/sparcv9 -lncurses'],
+#  mv /usr/include/form.h /usr/include/form.h.SAVE
 #  perl Makefile.PL PANELS MENUS FORMS
 #  gmake install
+#  mv /usr/include/form.h.SAVE /usr/include/form.h
 #  exit
 #
 # ### Catalyst::Plugin::Prototype
 #
-# force install File::Fetch
+# File::Fetch (will have to force install if not connected directly to Internet)
 # and then... CPAN 'upgrade' command
 #
-# export PATH=/usr/perl5/site_perl/5.16.1/bin:/usr/perl5/5.16.1/bin:$PATH
+# export PATH=/usr/perl5/site_perl/5.16.2/bin:/usr/perl5/5.16.2/bin:$PATH
 # export PATH=/opt/solarisstudio12.3/bin:$PATH
 #
-# pkgsend generate /usr/perl5/site_perl/5.16.1 > GMperlCPAN.p5m
-# pkgdepend generate -md /usr/perl5/site_perl/5.16.1 \
+# pkgsend generate /usr/perl5/site_perl/5.16.2 > GMperlCPAN.p5m
+# pkgdepend generate -md /usr/perl5/site_perl/5.16.2 \
 #           GMperlCPAN.p5m > GMperlCPAN.p5m.1
 #
 # Create file "pathmod" with contents:
-# <transform path=(^.+$) -> edit path .+ usr/perl5/site_perl/5.16.1/%<1>>
+# <transform path=(^.+$) -> edit path .+ usr/perl5/site_perl/5.16.2/%<1>>
 #
 # pkgmogrify GMperlCPAN.p5m.1 pathmod > GMperlCPAN.p5m.2
 #
