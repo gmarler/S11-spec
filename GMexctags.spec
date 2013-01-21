@@ -1,12 +1,12 @@
 #
-# spec file for package GMectags
+# spec file for package GMexctags
 #
 #
 # %include Solaris.inc
 
 # %include usr-gnu.inc
 
-Name:                    GMectags
+Name:                    GMexctags
 Summary:                 Exuberant ctags
 Version:                 5.8
 Source:                  http://prdownloads.sourceforge.net/ctags/ctags-%{version}.tar.gz
@@ -17,15 +17,18 @@ BuildRoot:               %{_tmppath}/%{name}-%{version}-build
 # %include default-depend.inc
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -n ctags-%{version}
 
 %build
 CPUS=`/usr/sbin/psrinfo | grep on-line | wc -l | tr -d ' '`
 if test "x$CPUS" = "x" -o $CPUS = 0; then
     CPUS=1
 fi
-export CFLAGS="%optflags"
-export LDFLAGS="%{_ldflags}"
+export CC=cc
+export CXX=CC
+# export CFLAGS="%optflags"
+export CFLAGS="-xO3"
+# export LDFLAGS="%{_ldflags}"
 ./configure                                 \
         --prefix=%{_prefix}                 \
         --libexecdir=%{_libexecdir}         \
@@ -38,7 +41,9 @@ gmake -j$CPUS
 
 %install
 rm -rf $RPM_BUILD_ROOT
-gmake install DESTDIR=$RPM_BUILD_ROOT
+# Unfortunately, DESTDIR doesn't work for this release
+# gmake install DESTDIR=$RPM_BUILD_ROOT
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
