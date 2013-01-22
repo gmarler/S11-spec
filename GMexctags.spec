@@ -11,10 +11,13 @@ Summary:                 Exuberant ctags
 Version:                 5.8
 Source:                  http://prdownloads.sourceforge.net/ctags/ctags-%{version}.tar.gz
 URL:                     http://ctags.sourceforge.net/
-SUNW_BaseDir:            %{_basedir}
+# SUNW_BaseDir:            %{_basedir}
+SUNW_BaseDir:            /
 BuildRoot:               %{_tmppath}/%{name}-%{version}-build
 
 # %include default-depend.inc
+
+BuildRequires:           file/gnu-coreutils
 
 %prep
 %setup -q -n ctags-%{version}
@@ -41,9 +44,13 @@ gmake -j$CPUS
 
 %install
 rm -rf $RPM_BUILD_ROOT
+mkdir  $RPM_BUILD_ROOT
 # Unfortunately, DESTDIR doesn't work for this release
 # gmake install DESTDIR=$RPM_BUILD_ROOT
-
+#
+# Create intermediate dirs under ${RPM_BUILD_ROOT}, which we created above
+ginstall -D -v -m 755 ctags   ${RPM_BUILD_ROOT}/usr/bin/exctags
+ginstall -D -v -m 644 ctags.1 ${RPM_BUILD_ROOT}/usr/share/man/man1/exctags.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -51,13 +58,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr (-, root, bin)
 %dir %attr (0755, root, bin) %{_bindir}
-%{_bindir}/db*
-%dir %attr (0755, root, bin) %{_libdir}
-%{_libdir}/libdb*
-%dir %attr (0755, root, bin) %{_includedir}
-%{_includedir}/*
-%dir %attr (0755, root, sys) %{_datadir}
-%dir %attr (0755, root, other) %{_datadir}/doc
-%{_datadir}/doc/*
+%attr(0555, root, bin) %{_bindir}/exctags
+%dir %attr (0755, root, bin) %{_mandir}
+%dir %attr (0755, root, bin) %{_mandir}/man1
+%attr(0444, root, bin) %{_mandir}/man1/exctags.1
 
 %changelog
