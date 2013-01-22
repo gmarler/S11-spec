@@ -4,6 +4,10 @@
 # NOTE: We're using CPANPLUS for this
 #
 #
+# IPS pkg prereqs:
+# image/imagemagick
+# library/gd
+# database/sqlite-3
 
 # 
 # List of Modules to Install, in order:
@@ -16,7 +20,7 @@
 # Digest::MD5
 # Digest::SHA1
 # Math::Pari - Manually, with libpari 2.3.5 (libpari 2.5.1 doesn't work as yet)
-# Module::Signature (force install due to being unable to reach keyserver)
+# Module::Signature (force install if unable to reach keyserver)
 # Log::Dispatch::FileRotate
 # Archive::Tar::Wrapper
 # Perl::Tidy
@@ -62,6 +66,8 @@
 # Dist::Zilla::Plugin::Git::Describe
 # Dist::Zilla::Plugin::GithubMeta
 # Dist::Zilla::Plugin::Catalyst
+# Dist::Zilla::PluginBundle::DAGOLDEN
+# Dist::Zilla::Plugin::MakeMaker::Awesome
 # Module::Starter
 # Expect
 # Regexp::Common
@@ -100,6 +106,7 @@
 # Crypt::X509
 # Crypt::CAST5
 # Crypt::OpenSSL::AES
+# Crypt::Eksblowfish::Bcrypt
 # Catalyst::Plugin::Session::Store::Memcached::Fast
 # Catalyst::Plugin::Session::Store::FastMmap
 # Catalyst::Plugin::Session::Store::BerkeleyDB
@@ -134,6 +141,8 @@
 # DBIx::Class::TimeStamp
 # MLDBM
 # AnyEvent
+# Task::Pinto
+# C::Scan
 #
 # To be done...
 # Curses
