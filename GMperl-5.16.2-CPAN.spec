@@ -13,6 +13,8 @@
 # List of Modules to Install, in order:
 # Modern::Perl
 # CPAN::SQLite
+# Pinto
+# Dist::Surveyor
 # Pod::HTML
 # Test::Pod::Coverage
 # Term::ReadKey
@@ -30,6 +32,7 @@
 # App::cpanminus
 # local::lib
 # Dist::Zilla
+# Dist::Zilla::Plugin::Pinto::Add
 # Dist::Zilla::Plugin::Git
 # Dist::Zilla::Plugin::VersionFromScript
 # Dist::Zilla::Plugin::VersionFromModule
