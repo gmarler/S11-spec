@@ -1,5 +1,4 @@
-
-%global git_rev 7946e2c
+%define git_rev 7946e2c
 
 Name:           linenoise
 Version:        0
@@ -8,9 +7,8 @@ Summary:        Minimal replacement for readline
 
 License:        BSD
 URL:            https://github.com/tadmarshall/linenoise
-Source0:        https://github.com/tadmarshall/linenoise/tarball/%{git_rev}/%{name}-%{git_rev}.tar.gz
-
-#Patch0:         %{name}-build-shared-lib.patch
+Source0: https://github.com/tadmarshall/linenoise/tarball/%{git_rev}/tadmarshall-%{name}-%{git_rev}.tar.gz
+Patch0:         %{name}-build-shared-lib.patch
 #Patch1:         %{name}-symbol-visibility.patch
 
 %description
@@ -19,7 +17,7 @@ of being smaller.
 
 %prep
 %setup -q -n tadmarshall-%{name}-%{git_rev}
-#%patch0 -p1
+%patch0 -p1
 #%patch1 -p1
 
 %build
