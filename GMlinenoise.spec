@@ -21,7 +21,7 @@ of being smaller.
 
 %prep
 %setup -q -n tadmarshall-%{name}-%{git_rev}
-%patch0 -p0
+%patch0 -p1
 %patch1 -p1
 
 %build
