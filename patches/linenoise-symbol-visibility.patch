@@ -1,19 +1,20 @@
-diff -ur a/Makefile b/Makefile
---- a/Makefile	Fri Oct  4 23:21:38 2013
-+++ b/Makefile	Fri Oct  4 23:22:35 2013
+Only in c: .Makefile.swp
+diff -ru b/Makefile c/Makefile
+--- b/Makefile	Sat Oct  5 12:32:45 2013
++++ c/Makefile	Sat Oct  5 12:33:31 2013
 @@ -4,7 +4,8 @@
  LIB = $(SONAME)$(EXTRA_VERSION)
  
- export CFLAGS ?= -xspace -g
+ export CFLAGS = -xspace -g
 -CFLAGS += -KPIC -DUSE_UTF8
 +CFLAGS += -KPIC -DUSE_UTF8 \
 +					-xldscope=hidden -DHAVE_VISIBILITY=1 -DBUILDING_LINENOISE=1
- LIBDIR ?= /opt/GM/lib
- INCLUDEDIR ?= /opt/GM/include
+ LIBDIR = /opt/GM/lib
+ INCLUDEDIR = /opt/GM/include
  
-diff -ur a/linenoise.h b/linenoise.h
---- a/linenoise.h	Fri Oct  4 23:22:58 2013
-+++ b/linenoise.h	Fri Oct  4 23:31:33 2013
+diff -ru b/linenoise.h c/linenoise.h
+--- b/linenoise.h	Wed Oct 26 09:56:52 2011
++++ c/linenoise.h	Sat Oct  5 12:10:42 2013
 @@ -37,6 +37,12 @@
  #ifndef __LINENOISE_H
  #define __LINENOISE_H

@@ -2,7 +2,7 @@
 
 %define _libdir     /opt/GM/lib
 %define _includedir /opt/GM/include
-#%define optflags    -xO3
+%define optflags    -xO3
 
 Name:           linenoise
 Version:        0
@@ -25,12 +25,12 @@ of being smaller.
 %patch1 -p1
 
 %build
-CC=cc
-CXX=CC
-LIBDIR="%{_libdir}" INCLUDEDIR="%{_includedir}" CFLAGS="%{optflags}" make %{?_smp_mflags}
+export CC=cc CXX=CC
+LIBDIR="%{_libdir}" INCLUDEDIR="%{_includedir}" CFLAGS="%{optflags}" gmake %{?_smp_mflags}
 
 %install
-LIBDIR="%{_libdir}" INCLUDEDIR="%{_includedir}" CFLAGS="%{optflags}" make %{?_smp_mflags} DESTDIR="%{buildroot}" install
+export CC=cc CXX=CC
+LIBDIR="%{_libdir}" INCLUDEDIR="%{_includedir}" CFLAGS="%{optflags}" gmake %{?_smp_mflags} DESTDIR="%{buildroot}" install
 
 %files
 %doc README.markdown

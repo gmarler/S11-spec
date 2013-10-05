@@ -1,5 +1,6 @@
+diff -ru a/Makefile b/Makefile
 --- a/Makefile	Wed Oct 26 09:56:52 2011
-+++ b/Makefile	Sat Oct  5 11:59:17 2013
++++ b/Makefile	Sat Oct  5 12:32:45 2013
 @@ -1,13 +1,38 @@
 -all:  linenoise_example linenoise_utf8_example linenoise_cpp_example
 +MAJOR_VERSION = 0
@@ -39,9 +40,9 @@
 +
 +.PHONY: install
 +install: $(LIB)
-+	install -m 0755 -d $(DESTDIR)$(INCLUDEDIR)
-+	install -m 0644 linenoise.h $(DESTDIR)$(INCLUDEDIR)
-+	install -m 0755 -d $(DESTDIR)$(LIBDIR)
-+	install -m 0755 $(LIB) $(DESTDIR)$(LIBDIR)
++	ginstall -m 0755 -d $(DESTDIR)$(INCLUDEDIR)
++	ginstall -m 0644 linenoise.h $(DESTDIR)$(INCLUDEDIR)
++	ginstall -m 0755 -d $(DESTDIR)$(LIBDIR)
++	ginstall -m 0755 $(LIB) $(DESTDIR)$(LIBDIR)
 +	ln -s $(LIB) $(DESTDIR)$(LIBDIR)/liblinenoise.so
 +
