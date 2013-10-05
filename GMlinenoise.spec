@@ -25,6 +25,8 @@ of being smaller.
 %patch1 -p1
 
 %build
+CC=cc
+CXX=CC
 LIBDIR="%{_libdir}" INCLUDEDIR="%{_includedir}" CFLAGS="%{optflags}" make %{?_smp_mflags}
 
 %install
