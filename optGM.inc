@@ -2,22 +2,22 @@
 # ---- Custom macros
 #
 #
-%__install              /opt/dtbld/bin/install -c
+%__install              /usr/gnu/bin/install
 
 
 #==============================================================================
 # ---- Studio Compiler specific macros
 #
 #
-%__cc                   /usr/sfw/bin/gcc
-%__cxx                  /usr/sfw/bin/g++
-%__make                 /usr/bin/make
+%__cc                   /opt/solarisstudio12.3/bin/cc
+%__cxx                  /opt/solarisstudio12.3/bin/CC
+%__make                 /usr/gnu/bin/make
 
 #==============================================================================
 # ---- configure macros.
 #       Macro(s) slavishly copied from autoconf's config.status.
 #
-%_prefix                /usr
+%_prefix                /opt/GM
 %_exec_prefix           %{_prefix}
 %_bindir                %{_exec_prefix}/bin
 %_sbindir               %{_exec_prefix}/sbin
@@ -26,17 +26,18 @@
 %_sysconfdir            %{_prefix}/etc
 %_sharedstatedir        %{_prefix}/com
 %_localstatedir         %{_prefix}/var
-%_lib                   lib
+%_lib                   /opt/GM/lib
 %_libdir                %{_exec_prefix}/%{_lib}
 %_includedir            %{_prefix}/include
-%_oldincludedir         /usr/include
+%_oldincludedir         /opt/GM/include
 %_infodir               %{_datadir}/info
 %_mandir                %{_datadir}/man
-%_docdir		%{_datadir}/doc
+%_docdir                %{_datadir}/doc
 %_pkg_docdir            %{_docdir}/%{name}
 %_javadir               %{_datadir}/java
-%_global_cflags		-O2 -g -pipe
-%optflags		%{_global_cflags}
+%_global_cflags         -xO3 -g -xtarget=generic
+%optflags               %{_global_cflags}
+%cxx_optflags           -xO3 -g0 -xtarget=generic
 
 #==============================================================================
 # ---- specfile macros - reproduced here to ensure they overwrite what may have
