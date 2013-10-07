@@ -8,7 +8,7 @@ Group:    System Environment/Libraries
 URL:    http://www.sourceforge.net/projects/%{name}/
 Source:   http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 BuildRequires:  x11/library/libx11, x11/library/libice, x11/library/libsm
-BuildRequires:  x11/library/libxt
+BuildRequires:  x11/library/toolkit/libxt
 #Provides: libungif = %{version}-%{release}
 #Obsoletes:  libungif <= %{version}-%{release}
 BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
