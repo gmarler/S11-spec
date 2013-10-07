@@ -3,7 +3,7 @@
 #
 #
 %__install              /usr/gnu/bin/install
-
+%__id_u                 /usr/xpg4/bin/id -u
 
 #==============================================================================
 # ---- Studio Compiler specific macros
