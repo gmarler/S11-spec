@@ -23,7 +23,7 @@ the library which supported uncompressed GIFs while the Unisys LZW patent
 was in effect.
 
 %prep
-%setup -q
+%setup -q -n %{short_name}-%{version}
 
 %build
 %configure
