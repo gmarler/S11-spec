@@ -1,17 +1,20 @@
+%include optGM.inc
+
+%define short_name giflib
 
 Summary:  Library for manipulating GIF format image files
-Name:   GMgiflib
+Name:     GM%{short_name}
 Version:  4.1.6
 Release:  9%{?dist}
 License:  MIT
 Group:    System Environment/Libraries
-URL:    http://www.sourceforge.net/projects/%{name}/
-Source:   http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
+URL:    http://www.sourceforge.net/projects/%{short_name}/
+Source:   http://downloads.sourceforge.net/%{short_name}/%{short_name}-%{version}.tar.bz2
 BuildRequires:  x11/library/libx11, x11/library/libice, x11/library/libsm
 BuildRequires:  x11/library/toolkit/libxt
 #Provides: libungif = %{version}-%{release}
 #Obsoletes:  libungif <= %{version}-%{release}
-BuildRoot:  %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+BuildRoot:  %{_tmppath}/%{short_name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
 The giflib package contains a shared library of functions for loading and
