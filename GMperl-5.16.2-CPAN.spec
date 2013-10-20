@@ -12,6 +12,7 @@
 # 
 # List of Modules to Install, in order:
 # Modern::Perl
+# Algorithm::Diff::Callback
 # CPAN::SQLite
 # Pinto
 # Dist::Surveyor
