@@ -1,0 +1,60 @@
+Only in c: .Makefile.swp
+diff -ru b/Makefile c/Makefile
+--- b/Makefile	Sat Oct  5 12:32:45 2013
++++ c/Makefile	Sat Oct  5 12:33:31 2013
+@@ -4,7 +4,8 @@
+ LIB = $(SONAME)$(EXTRA_VERSION)
+ 
+ export CFLAGS = -xspace -g
+-CFLAGS += -KPIC -DUSE_UTF8
++CFLAGS += -KPIC -DUSE_UTF8 \
++					-xldscope=hidden -DHAVE_VISIBILITY=1 -DBUILDING_LINENOISE=1
+ LIBDIR = /opt/GM/lib
+ INCLUDEDIR = /opt/GM/include
+ 
+diff -ru b/linenoise.h c/linenoise.h
+--- b/linenoise.h	Wed Oct 26 09:56:52 2011
++++ c/linenoise.h	Sat Oct  5 12:10:42 2013
+@@ -37,6 +37,12 @@
+ #ifndef __LINENOISE_H
+ #define __LINENOISE_H
+ 
++#if BUILDING_LINENOISE && HAVE_VISIBILITY
++#define LINENOISE_EXPORTED __global
++#else
++#define LINENOISE_EXPORTED
++#endif
++
+ #ifndef NO_COMPLETION
+ typedef struct linenoiseCompletions {
+   size_t len;
+@@ -44,19 +50,19 @@
+ } linenoiseCompletions;
+ 
+ typedef void(linenoiseCompletionCallback)(const char *, linenoiseCompletions *);
+-void linenoiseSetCompletionCallback(linenoiseCompletionCallback *);
+-void linenoiseAddCompletion(linenoiseCompletions *, const char *);
++LINENOISE_EXPORTED void linenoiseSetCompletionCallback(linenoiseCompletionCallback *);
++LINENOISE_EXPORTED void linenoiseAddCompletion(linenoiseCompletions *, const char *);
+ #endif
+ 
+ typedef int(linenoiseCharacterCallback)(const char *, size_t, char);
+-void linenoiseSetCharacterCallback(linenoiseCharacterCallback *, char);
++LINENOISE_EXPORTED void linenoiseSetCharacterCallback(linenoiseCharacterCallback *, char);
+ 
+-char *linenoise(const char *prompt);
+-int linenoiseHistoryAdd(const char *line);
+-int linenoiseHistorySetMaxLen(int len);
+-int linenoiseHistorySave(const char *filename);
+-int linenoiseHistoryLoad(const char *filename);
+-void linenoiseHistoryFree(void);
+-char **linenoiseHistory(int *len);
++LINENOISE_EXPORTED char *linenoise(const char *prompt);
++LINENOISE_EXPORTED int linenoiseHistoryAdd(const char *line);
++LINENOISE_EXPORTED int linenoiseHistorySetMaxLen(int len);
++LINENOISE_EXPORTED int linenoiseHistorySave(const char *filename);
++LINENOISE_EXPORTED int linenoiseHistoryLoad(const char *filename);
++LINENOISE_EXPORTED void linenoiseHistoryFree(void);
++LINENOISE_EXPORTED char **linenoiseHistory(int *len);
+ 
+ #endif /* __LINENOISE_H */
