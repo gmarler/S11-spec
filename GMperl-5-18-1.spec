@@ -46,7 +46,6 @@ IPS_legacy:       false
 %define           perl_sitedir       %{perl5_dir}/site_perl
 %define           perl_sitebin       %{perl_sitedir}/%{src_version}/bin
 %define           perl_sitelib       %{perl_sitedir}/%{src_version}
-%define           perl_sitelibexp    %{perl_sitedir}/%{src_version}
 %define           perl_sitearch      %{perl_sitelib}/%{perl_arch_dir}
 %define           perl_sitemandir    %{perl_sitedir}/%{src_version}/man
 %define           perl_sitehtmldir   %{perl_sitedir}/%{src_version}/html
@@ -117,7 +116,7 @@ export LDFLAGS="%_ldflags -L%{_prefix}/gnu/lib/sparcv9 -R%{_prefix}/gnu/lib/spar
   -Dcc="$CC"                                   \
   -Dccflags="$CFLAGS"                          \
   -Dccversion="$($CC -V 2>&1)"                 \
-  -Dcf_email="root@bloomberg.net"              \
+  -Dcf_email="gmarler@gmarler.com"              \
   -Dinc_version_list="$INC_COMPAT"             \
   -Dld="$CC"                                   \
   -Dldflags="$LDFLAGS"                         \
@@ -135,7 +134,6 @@ export LDFLAGS="%_ldflags -L%{_prefix}/gnu/lib/sparcv9 -R%{_prefix}/gnu/lib/spar
   -Dsitebin=%{perl_sitebin}                    \
   -Dsitearch=%{perl_sitearch}                  \
   -Dsitelib=%{perl_sitelib}                    \
-  -Dsitelibexp=%{perl_sitelibexp}              \
   -Dsiteman1dir=%{perl_sitemandir}/man1        \
   -Dsiteman3dir=%{perl_sitemandir}/man3        \
   -Dsitehtml1dir=%{perl_sitehtmldir}/html1     \
