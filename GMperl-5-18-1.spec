@@ -10,7 +10,7 @@
 %define minor       18
 %define patch       1
 %define src_version %{major}.%{minor}.%{patch}
-%define gm_version  %{src_version}.3
+%define gm_version  %{src_version}.4
 
 Name:             GMperl-%{major}-%{minor}-%{patch}
 Summary:          Practical Extraction and Report Language
@@ -209,7 +209,8 @@ mkdir -p $RPM_BUILD_ROOT%{perl_vendorhtmldir}/html3
 # Only root should see/use this Perl
 # Could add a group (other than bin), but it would have to reside locally on
 # all hosts
-%attr(0750,root,bin) /usr/perl5/%{src_version}/bin/*
+# %attr(0750,root,bin) /usr/perl5/%{src_version}/bin/*
+/usr/perl5/%{src_version}/bin/*
 /usr/perl5/%{src_version}/lib/*
 /usr/perl5/%{src_version}/man/*
 %dir %attr(-,root,bin)
