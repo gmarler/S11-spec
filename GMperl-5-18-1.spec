@@ -31,30 +31,30 @@ IPS_legacy:       false
 # binary itself, but on the bit length of the int (integer) type
 #
 %ifarch sparc
-%define perl_arch_dir sun4-solaris-64int
+%define perl_arch_name sun4-solaris-thread-multi-64int
 %else
-%define perl_arch_dir i86pc-solaris-64int 
+%define perl_arch_name i86pc-solaris-thread-multi-64
 %endif
 
 %define           perl_vendor        GM
 %define           perl5_dir          %{_prefix}/perl5
 %define           perl_prefix        %{perl5_dir}/%{src_version}
 %define           perl_lib           %{perl_prefix}/lib
-%define           perl_archlib       %{perl_lib}/%{perl_arch_dir}
+%define           perl_archlib       %{perl_lib}/%{perl_arch_name}
 %define           perl_mandir        %{perl_prefix}/man
 %define           perl_htmldir       %{perl_prefix}/html
 %define           perl_sitedir       %{perl5_dir}/site_perl
 %define           perl_sitebin       %{perl_sitedir}/%{src_version}/bin
 %define           perl_sitelib       %{perl_sitedir}/%{src_version}
-%define           perl_sitearch      %{perl_sitelib}/%{perl_arch_dir}
+%define           perl_sitearch      %{perl_sitelib}/%{perl_arch_name}
 %define           perl_sitemandir    %{perl_sitedir}/%{src_version}/man
 %define           perl_sitehtmldir   %{perl_sitedir}/%{src_version}/html
 %define           perl_vendordir     %{perl5_dir}/vendor_perl
 #%define           perl_vendorlib    %{perl_vendordir}/%{src_version}/%{vendor}
-#%define           perl_vendorarch   %{perl_vendordir}/%{src_version}/%{vendor}/%{perl_arch_dir}
+#%define           perl_vendorarch %{perl_vendordir}/%{src_version}/%{vendor}/%{perl_arch_name}
 %define           perl_vendorbin     %{perl_vendordir}/%{src_version}/bin
 %define           perl_vendorlib     %{perl_vendordir}/%{src_version}
-%define           perl_vendorarch    %{perl_vendorlib}/%{perl_arch_dir}
+%define           perl_vendorarch    %{perl_vendorlib}/%{perl_arch_name}
 %define           perl_vendormandir  %{perl_vendordir}/%{src_version}/man
 %define           perl_vendorhtmldir %{perl_vendordir}/%{src_version}/html
 
@@ -113,10 +113,11 @@ export LDFLAGS="%_ldflags -L%{_prefix}/gnu/lib/sparcv9 -R%{_prefix}/gnu/lib/spar
 #
 ./Configure                                    \
   -Darchlib=%{perl_archlib}                    \
+  -Darchname=%{perl_arch_name}                 \
   -Dcc="$CC"                                   \
   -Dccflags="$CFLAGS"                          \
   -Dccversion="$($CC -V 2>&1)"                 \
-  -Dcf_email="gmarler@gmarler.com"              \
+  -Dcf_email="gmarler@gmarler.com"             \
   -Dinc_version_list="$INC_COMPAT"             \
   -Dld="$CC"                                   \
   -Dldflags="$LDFLAGS"                         \
